@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tree.wxmini.dao.TbUserMapper" >
+  <resultMap id="BaseResultMap" type="com.tree.wxmini.model.TbUser" >
+    <id column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UID, OPEN_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where UID = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_user
+    where UID = #{uid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tree.wxmini.model.TbUser" >
+    insert into tb_user (UID, OPEN_ID)
+    values (#{uid,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tree.wxmini.model.TbUser" >
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        UID,
+      </if>
+      <if test="openId != null" >
+        OPEN_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tree.wxmini.model.TbUser" >
+    update tb_user
+    <set >
+      <if test="openId != null" >
+        OPEN_ID = #{openId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UID = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tree.wxmini.model.TbUser" >
+    update tb_user
+    set OPEN_ID = #{openId,jdbcType=VARCHAR}
+    where UID = #{uid,jdbcType=VARCHAR}
+  </update>
+</mapper>

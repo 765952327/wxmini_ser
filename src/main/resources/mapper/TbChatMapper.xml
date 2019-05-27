@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tree.wxmini.dao.TbChatMapper" >
+  <resultMap id="BaseResultMap" type="com.tree.wxmini.model.TbChat" >
+    <id column="CHID" property="chid" jdbcType="INTEGER" />
+    <result column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="TO_UID" property="toUid" jdbcType="VARCHAR" />
+    <result column="CHAT_TEXT" property="chatText" jdbcType="VARCHAR" />
+    <result column="CHAT_TYPE" property="chatType" jdbcType="INTEGER" />
+    <result column="CHAT_STATE" property="chatState" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CHID, UID, TO_UID, CHAT_TEXT, CHAT_TYPE, CHAT_STATE, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_chat
+    where CHID = #{chid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_chat
+    where CHID = #{chid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tree.wxmini.model.TbChat" >
+    insert into tb_chat (CHID, UID, TO_UID, 
+      CHAT_TEXT, CHAT_TYPE, CHAT_STATE, 
+      CREATE_TIME)
+    values (#{chid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{toUid,jdbcType=VARCHAR}, 
+      #{chatText,jdbcType=VARCHAR}, #{chatType,jdbcType=INTEGER}, #{chatState,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tree.wxmini.model.TbChat" >
+    insert into tb_chat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chid != null" >
+        CHID,
+      </if>
+      <if test="uid != null" >
+        UID,
+      </if>
+      <if test="toUid != null" >
+        TO_UID,
+      </if>
+      <if test="chatText != null" >
+        CHAT_TEXT,
+      </if>
+      <if test="chatType != null" >
+        CHAT_TYPE,
+      </if>
+      <if test="chatState != null" >
+        CHAT_STATE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chid != null" >
+        #{chid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="toUid != null" >
+        #{toUid,jdbcType=VARCHAR},
+      </if>
+      <if test="chatText != null" >
+        #{chatText,jdbcType=VARCHAR},
+      </if>
+      <if test="chatType != null" >
+        #{chatType,jdbcType=INTEGER},
+      </if>
+      <if test="chatState != null" >
+        #{chatState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tree.wxmini.model.TbChat" >
+    update tb_chat
+    <set >
+      <if test="uid != null" >
+        UID = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="toUid != null" >
+        TO_UID = #{toUid,jdbcType=VARCHAR},
+      </if>
+      <if test="chatText != null" >
+        CHAT_TEXT = #{chatText,jdbcType=VARCHAR},
+      </if>
+      <if test="chatType != null" >
+        CHAT_TYPE = #{chatType,jdbcType=INTEGER},
+      </if>
+      <if test="chatState != null" >
+        CHAT_STATE = #{chatState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CHID = #{chid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tree.wxmini.model.TbChat" >
+    update tb_chat
+    set UID = #{uid,jdbcType=VARCHAR},
+      TO_UID = #{toUid,jdbcType=VARCHAR},
+      CHAT_TEXT = #{chatText,jdbcType=VARCHAR},
+      CHAT_TYPE = #{chatType,jdbcType=INTEGER},
+      CHAT_STATE = #{chatState,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where CHID = #{chid,jdbcType=INTEGER}
+  </update>
+</mapper>

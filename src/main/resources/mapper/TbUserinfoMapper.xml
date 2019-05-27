@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tree.wxmini.dao.TbUserinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tree.wxmini.model.TbUserinfo" >
+    <id column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tree.wxmini.model.TbUserinfo" extends="BaseResultMap" >
+    <result column="USER_HEADPIC" property="userHeadpic" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UID, USER_NAME, CREATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    USER_HEADPIC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_userinfo
+    where UID = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_userinfo
+    where UID = #{uid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tree.wxmini.model.TbUserinfo" >
+    insert into tb_userinfo (UID, USER_NAME, CREATE_TIME, 
+      USER_HEADPIC)
+    values (#{uid,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{userHeadpic,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tree.wxmini.model.TbUserinfo" >
+    insert into tb_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        UID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="userHeadpic != null" >
+        USER_HEADPIC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userHeadpic != null" >
+        #{userHeadpic,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tree.wxmini.model.TbUserinfo" >
+    update tb_userinfo
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userHeadpic != null" >
+        USER_HEADPIC = #{userHeadpic,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where UID = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tree.wxmini.model.TbUserinfo" >
+    update tb_userinfo
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      USER_HEADPIC = #{userHeadpic,jdbcType=LONGVARCHAR}
+    where UID = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tree.wxmini.model.TbUserinfo" >
+    update tb_userinfo
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where UID = #{uid,jdbcType=VARCHAR}
+  </update>
+</mapper>

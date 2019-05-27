@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tree.wxmini.dao.TbContentReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.tree.wxmini.model.TbContentReply" >
+    <id column="COID" property="coid" jdbcType="VARCHAR" />
+    <result column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="CID" property="cid" jdbcType="VARCHAR" />
+    <result column="REPLY_UID" property="replyUid" jdbcType="VARCHAR" />
+    <result column="R_COID" property="rCoid" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tree.wxmini.model.TbContentReply" extends="BaseResultMap" >
+    <result column="REPLY_TEXT" property="replyText" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COID, UID, CID, REPLY_UID, R_COID, CREATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    REPLY_TEXT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_content_reply
+    where COID = #{coid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_content_reply
+    where COID = #{coid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tree.wxmini.model.TbContentReply" >
+    insert into tb_content_reply (COID, UID, CID, 
+      REPLY_UID, R_COID, CREATE_TIME, 
+      REPLY_TEXT)
+    values (#{coid,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, 
+      #{replyUid,jdbcType=VARCHAR}, #{rCoid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{replyText,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tree.wxmini.model.TbContentReply" >
+    insert into tb_content_reply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="coid != null" >
+        COID,
+      </if>
+      <if test="uid != null" >
+        UID,
+      </if>
+      <if test="cid != null" >
+        CID,
+      </if>
+      <if test="replyUid != null" >
+        REPLY_UID,
+      </if>
+      <if test="rCoid != null" >
+        R_COID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="replyText != null" >
+        REPLY_TEXT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="coid != null" >
+        #{coid,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="replyUid != null" >
+        #{replyUid,jdbcType=VARCHAR},
+      </if>
+      <if test="rCoid != null" >
+        #{rCoid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyText != null" >
+        #{replyText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tree.wxmini.model.TbContentReply" >
+    update tb_content_reply
+    <set >
+      <if test="uid != null" >
+        UID = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        CID = #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="replyUid != null" >
+        REPLY_UID = #{replyUid,jdbcType=VARCHAR},
+      </if>
+      <if test="rCoid != null" >
+        R_COID = #{rCoid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyText != null" >
+        REPLY_TEXT = #{replyText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where COID = #{coid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tree.wxmini.model.TbContentReply" >
+    update tb_content_reply
+    set UID = #{uid,jdbcType=VARCHAR},
+      CID = #{cid,jdbcType=VARCHAR},
+      REPLY_UID = #{replyUid,jdbcType=VARCHAR},
+      R_COID = #{rCoid,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      REPLY_TEXT = #{replyText,jdbcType=LONGVARCHAR}
+    where COID = #{coid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tree.wxmini.model.TbContentReply" >
+    update tb_content_reply
+    set UID = #{uid,jdbcType=VARCHAR},
+      CID = #{cid,jdbcType=VARCHAR},
+      REPLY_UID = #{replyUid,jdbcType=VARCHAR},
+      R_COID = #{rCoid,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where COID = #{coid,jdbcType=VARCHAR}
+  </update>
+</mapper>
