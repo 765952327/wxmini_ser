@@ -14,6 +14,12 @@
     from tb_user
     where UID = #{uid,jdbcType=VARCHAR}
   </select>
+  <select id="selectUserByOpenID" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  select
+  *
+  from tb_user
+  where OPEN_ID = #{openId,jdbcType=VARCHAR}
+</select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_user
     where UID = #{uid,jdbcType=VARCHAR}

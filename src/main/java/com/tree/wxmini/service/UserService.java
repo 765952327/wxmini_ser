@@ -1,6 +1,7 @@
 package com.tree.wxmini.service;
 
 import com.tree.wxmini.model.TbUser;
+import com.tree.wxmini.model.TbUserinfo;
 
 
 import java.util.List;
@@ -31,7 +32,7 @@ public interface UserService {
      * @param user
      * @return int
      */
-    String  createUser(TbUser user);
+    String  createUser(TbUser user, TbUserinfo userinfo);
 
     /**
      * 更新用户

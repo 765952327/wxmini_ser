@@ -9,7 +9,7 @@ public class TbContent {
 
     private Integer userMood;
 
-    private Integer userAnonymous;
+    private Boolean userAnonymous;
 
     private Date createTime;
 
@@ -39,11 +39,11 @@ public class TbContent {
         this.userMood = userMood;
     }
 
-    public Integer getUserAnonymous() {
+    public Boolean getUserAnonymous() {
         return userAnonymous;
     }
 
-    public void setUserAnonymous(Integer userAnonymous) {
+    public void setUserAnonymous(Boolean userAnonymous) {
         this.userAnonymous = userAnonymous;
     }
 

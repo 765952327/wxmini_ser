@@ -17,6 +17,16 @@
   <sql id="Blob_Column_List" >
     CONTENT_TEXT
   </sql>
+  <select id="queryContentByTag" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs" >
+    SELECT
+      *
+    FROM
+      tb_content
+    ORDER BY
+      tb_content.date DESC
+      LIMIT ${param1},
+       10
+  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

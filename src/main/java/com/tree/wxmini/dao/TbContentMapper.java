@@ -1,8 +1,14 @@
 package com.tree.wxmini.dao;
 
 import com.tree.wxmini.model.TbContent;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TbContentMapper {
+
+    List<TbContent> queryContent(@Param(value="x") Integer x);
+
     int deleteByPrimaryKey(String cid);
 
     int insert(TbContent record);
