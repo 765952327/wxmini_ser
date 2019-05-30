@@ -39,8 +39,12 @@ public class ContentModel {
         return userAnonymous;
     }
 
-    public void setUserAnonymous(int userAnonymous) {
-        this.userAnonymous = userAnonymous;
+    public void setUserAnonymous(Boolean userAnonymous) {
+        if (userAnonymous == true){
+            this.userAnonymous = 1;
+        }else {
+            this.userAnonymous = 0;
+        }
     }
 
     public String getContentText() {

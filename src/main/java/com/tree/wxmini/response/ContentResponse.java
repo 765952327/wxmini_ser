@@ -6,10 +6,19 @@ import java.util.Date;
 public class ContentResponse {
     private String cid;
     private String uid;
-    private Integer mood;
-    private Integer type;
-    private String text;
-    private String time;
+    private String headPic;
+    private int userMood;
+    private int userAnonymous;
+    private String contentText;
+    private String createTime;
+
+    public String getHeadPic() {
+        return headPic;
+    }
+
+    public void setHeadPic(String headPic) {
+        this.headPic = headPic;
+    }
 
     public String getCid() {
         return cid;
@@ -27,36 +36,40 @@ public class ContentResponse {
         this.uid = uid;
     }
 
-    public Integer getMood() {
-        return mood;
+    public int getUserMood() {
+        return userMood;
     }
 
-    public void setMood(Integer mood) {
-        this.mood = mood;
+    public void setUserMood(int userMood) {
+        this.userMood = userMood;
     }
 
-    public Integer getType() {
-        return type;
+    public int getUserAnonymous() {
+        return userAnonymous;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setUserAnonymous(Boolean userAnonymous) {
+        if (userAnonymous == true){
+            this.userAnonymous = 1;
+        }else {
+            this.userAnonymous = 0;
+        }
     }
 
-    public String getText() {
-        return text;
+    public String getContentText() {
+        return contentText;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setContentText(String contentText) {
+        this.contentText = contentText;
     }
 
-    public String getTime() {
-        return time;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setTime(Date time) {
+    public void setCreateTime(Date createTime) {
         SimpleDateFormat sf  = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        this.time = sf.format(time);
+        this.createTime = sf.format(createTime);
     }
 }

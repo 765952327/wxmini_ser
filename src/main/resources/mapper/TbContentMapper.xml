@@ -17,13 +17,13 @@
   <sql id="Blob_Column_List" >
     CONTENT_TEXT
   </sql>
-  <select id="queryContentByTag" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs" >
+  <select id="queryContent" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs" >
     SELECT
       *
     FROM
       tb_content
     ORDER BY
-      tb_content.date DESC
+      tb_content.CREATE_TIME DESC
       LIMIT ${param1},
        10
   </select>

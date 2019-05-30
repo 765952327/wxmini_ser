@@ -2,6 +2,7 @@ package com.tree.wxmini.controller;
 
 import com.tree.wxmini.model.TbContent;
 import com.tree.wxmini.request.Comment;
+import com.tree.wxmini.request.ContentModel;
 import com.tree.wxmini.response.ContentResponse;
 import com.tree.wxmini.response.ResponseState;
 import com.tree.wxmini.service.ContentService;
@@ -44,8 +45,7 @@ public class ContentController {
 
     @RequestMapping("/content.query")
     public List<ContentResponse> contentQuery(@Param("page") int page){
-        List<ContentResponse> contentResponseList = new ArrayList<>();
-//        TODO:获取列表 分页值为page
+        List<ContentResponse> contentResponseList = contentService.queryContent(page);
         return contentResponseList;
     }
 
